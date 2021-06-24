@@ -1,0 +1,67 @@
+<mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese lo que quiera buscar..." autocomplete="off" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="FullName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.FullName}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="Telephone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telephone </th>
+            <td mat-cell *matCellDef="let element"> {{element.Telephone}}% </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+        </ng-container>
+
+        <!-- Fruit Column -->
+        <ng-container matColumnDef="AdmissionDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Admission Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.AdmissionDate | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Civil Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Civil Status</th>
+            <td mat-cell *matCellDef="let element"> {{element.CivilStatus}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Sex">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sex</th>
+            <td mat-cell *matCellDef="let element"> {{element.Sex}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+            <td mat-cell *matCellDef="let element; let i=index">
+                <a class="pointer">
+                    <span class="material-icons pencil">
+                    mode_edit
+                    </span>
+                </a>
+                <a class="pointer">
+                    <span class="material-icons trash" (click)=deleteEmploye(i)>
+                        delete
+                        </span>
+                </a>
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
