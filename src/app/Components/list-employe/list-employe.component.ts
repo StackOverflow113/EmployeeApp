@@ -6,6 +6,7 @@ import { EmployeService } from '../../services/employe.service';
 import { Employe } from '../../models/employe';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageConfirmComponent } from '../shared/message-confirm/message-confirm.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-employe',
@@ -21,7 +22,7 @@ export class ListEmployeComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   listEmpleado: Employe[];
 
-  constructor(private employeService: EmployeService, public dialog: MatDialog) {
+  constructor(private employeService: EmployeService, public dialog: MatDialog, public snackBar: MatSnackBar) {
   }
   ngOnInit(): void {
     this.loadEmploye();
@@ -50,8 +51,13 @@ export class ListEmployeComponent implements OnInit {
       data: { mensaje: 'are you sure to delete this employee?' }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.employeService.eliminar(index);
-      this.loadEmploye();
+      if (result === 'aceptar') {
+        this.employeService.eliminar(index);
+        this.loadEmploye();
+        this.snackBar.open('Employe deleted successfully', '', {
+          duration: 3000
+        })
+      }
     });
   }
 }

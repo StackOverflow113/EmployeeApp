@@ -3,6 +3,6 @@
     <p>{{mensaje}}</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>OK</button>
+    <button mat-button (click)="onNoClick()">No</button>
+    <button mat-button [mat-dialog-close]="btn" cdkFocusInitial>Yes</button>
 </div>

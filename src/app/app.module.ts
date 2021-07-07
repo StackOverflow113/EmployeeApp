@@ -10,6 +10,7 @@ import { ListEmployeComponent } from './components/list-employe/list-employe.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MessageConfirmComponent } from './components/shared/message-confirm/message-confirm.component';
 import { AngularMaterialModule } from './Components/shared/angular-material/angular-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AngularMaterialModule } from './Components/shared/angular-material/angu
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
